@@ -20,9 +20,6 @@ class PropertyController extends AbstractController
     }
 
 
-
-
-
     /**
      * @Route("/biens", name="property.index")
      */

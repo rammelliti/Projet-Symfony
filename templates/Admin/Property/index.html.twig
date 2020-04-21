@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} 
+Gérer les biens
+{% endblock %}
+
+{% block body %}
+<h4>Gérer les biens</h4>
+<div>
+  <div class="col-5">
+    <table class="table">
+      <thead>
+          <tr>
+            <th scope="col">Titre</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for property in properties %}
+          <tr>
+            <td scope="row">{{property.title}}</td>
+            <td>
+              {#<a href="{{ path('admin/property/edit.html.twig', {'id': property.id }) }}" #}
+                 <button type="button" class="btn btn-primary">Editer</button></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      </div>
+</div>
+{% endblock %}
