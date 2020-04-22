@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Entity;
+
+use Symfony\Component\Form\FormTypeInterface;
 use Cocur\Slugify\Slugify;
 
 use Doctrine\ORM\Mapping as ORM;
