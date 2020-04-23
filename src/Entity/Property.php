@@ -29,7 +29,12 @@ class Property
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Range(   
+     *      min = 20,
+     *      max = 255,
+     *      minMessage = "Le titre du bien doit contenir au moin 20 caractères .",
+     *      maxMessage = "Le titre du bien doit contenir au maximum 255 caractères .")
      */
     private $title;
 
@@ -40,7 +45,11 @@ class Property
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Range(min=10, max=800)
+     * @Assert\Range(
+     *      min = 10,
+     *      max = 400,
+     *      minMessage = "La surface du bien doit être supèrieur au 10 m² .",
+     *      maxMessage = "La surface du bien doit être infèrieur au 400 m² .")
      */
     private $surface;
 
@@ -81,6 +90,7 @@ class Property
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^[0-9]{5}$/")
      */
     private $postal_code;
 
