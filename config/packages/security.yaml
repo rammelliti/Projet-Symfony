@@ -20,14 +20,16 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: 
+            anonymous: true
             
             form_login:
-                login_path: login
                 check_path: login
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator 
                
             logout:
-                path: logout
+                path: /logout
                 target: /
             #http_basic: 
                        
