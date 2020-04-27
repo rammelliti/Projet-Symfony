@@ -52,12 +52,13 @@ class PropertyRepository extends ServiceEntityRepository
      * @Route("/biens" , name ="property")
      * @return Property
      */
-    public function findAllVisible()
+    public function findAllVisibleQuery():Query
     {
-        return $this->createQueryBuilder('property')
+        //findAllVisible()
+        return  $this->createQueryBuilder('property')
             ->andWhere('property.sold = false')
             ->getQuery()
-            ->getResult()
+            
         ;
     }
     

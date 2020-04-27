@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Property;
+//use App\Entity\PropertySearch;
+//use App\Form\PropertySearchType;
 use App\Repository\PropertyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,23 +28,24 @@ class PropertyController extends AbstractController
      * @Route("/biens", name="property.index")
      * @return Response
      */
-    public function index(PaginatorInterface $paginator, Request $request)
+    public function index(PaginatorInterface $paginator, Request $request):Reponse
     {
-        $dql   = "SELECT properties FROM AcmeMainBundle:Property p";
-        $query = $em->createQuery($dql);
-    
-        $pagination = $paginator->paginate(
-            $query, /* query NOT result */
-            $request->query->getInt('page', 1), /*page number*/
-            12 /*limit per page*/
+        $search = new PropertySearch();
+        $form = $this->createForm(PropertySearchType::class, $search);
+        $form->handleRequest($request);
+
+        $properties = $paginator->paginate(
+            $this->repository->findAllVisibleQuery($search),
+            $request->query->getInt('page', 1),
+            12
         );
-    
-        // parameters to template
-        return $this->render('property/index.html.twig' , [
-            'current_menu' => 'properties',
-            'properties' => $properties,
-            'form' => $form->createView()
-        ]);
+
+            return $this -> render ('property/index.html.twig' , [
+                'current_menu' => 'properties',
+                'properties' => $properties,
+                'form' => $form->createView()
+            ]);
+ 
     }
     
 
