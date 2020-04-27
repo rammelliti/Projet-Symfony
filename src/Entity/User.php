@@ -18,12 +18,12 @@ class User implements UserInterface,\Serializable
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $password;
 
@@ -55,6 +55,7 @@ class User implements UserInterface,\Serializable
 
         return $this;
     }
+    
     public function getRoles()
     {
         return ['ROLE_ADMIN'];
