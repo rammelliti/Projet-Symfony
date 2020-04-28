@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\FormTypeInterface;
 use Cocur\Slugify\Slugify;
 
@@ -19,6 +21,7 @@ class Property
      public function __construct()
      {
         $this->createdAt=(new \DateTime());
+        $this->options = new ArrayCollection();
      }
         
     /**
@@ -103,6 +106,11 @@ class Property
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Option", mappedBy="properties")
+     */
+    private $options;
 
     public function getId(): ?int
     {

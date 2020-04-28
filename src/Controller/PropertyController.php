@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Property;
-//use App\Entity\PropertySearch;
-//use App\Form\PropertySearchType;
+use App\Entity\PropertySearch;
+use App\Form\PropertySearchType;
 use App\Repository\PropertyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
