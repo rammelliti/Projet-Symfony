@@ -18,6 +18,15 @@ class PropertySearch
     private $id;
 
     /**
+     * @var ArrayCollection
+     */
+    private $options;
+
+    public function __construct()) {
+        $this->options = new ArrayCollection();
+    }
+
+    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $maxPrice;
@@ -59,5 +68,23 @@ class PropertySearch
         $this->minSurface = $minSurface;
 
         return $this;
+    }
+
+    /**
+    * @return Array Collection
+    */
+    public function getOptions(): ArrayCollection
+    {
+        return $this->options;
+
+    }
+
+    /**
+    * @param Array Collection $options
+    */
+    public function setOptions(ArrayCollection $options): void
+    {
+        $this->options = $options;
+
     }
 }

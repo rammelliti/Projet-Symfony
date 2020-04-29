@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -27,6 +28,11 @@ class User implements UserInterface,\Serializable
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -49,38 +55,53 @@ class User implements UserInterface,\Serializable
         return $this->password;
     }
 
-    public function setPassword(?string $password): self
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
         return $this;
     }
-    
-    public function getRoles()
+
+    public function getEmail(): ?string
     {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+        public function getRoles() {
+        //doit retourner le tableau d eRoles dont l'utilisateur est membre
         return ['ROLE_ADMIN'];
     }
-    PUBLIC FUNCTION getSalt()
+        public function getSalt() 
     {
         return null;
     }
-    public function eraseCredentials()
-    {
-    }
+
+    public function eraseCredentials(){}
+    
     public function serialize()
     {
         return serialize([
             $this->id,
             $this->username,
-            $this->password
+            $this->password,
+            $this->email
         ]);
     }
-    public function unserialize($serialize)
+
+    public function unserialize($serialized)
     {
-        list(
+        list (
             $this->id,
             $this->username,
-            $this->password
-        ) = unserialize($serialize, ['allowed_classes' => false]);
+            $this->password,
+            $this->email
+        ) = unserialize($serialized, ['allowed_classes' =>false ]);
+
     }
 }
